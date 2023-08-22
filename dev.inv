@@ -1,2 +1,2 @@
 [dev]
-172.31.44.36 ansible_user=jenkins
+172.31.44.36 ansible_user=ubuntu
