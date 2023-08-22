@@ -1,2 +1,2 @@
-[dev]
+[test]
 172.31.44.36 ansible_user=ubuntu
