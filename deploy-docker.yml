@@ -1,10 +1,20 @@
 ---
 - hosts: dev
-  become: True
-  become_method: sudo
-  tasks:   
-    - name: Ensure service is enabled
-      command: service docker restart
+  become: true
+  tasks:
+    - name: Install python pip
+      ansible.builtin.yum:
+        name: python-pip
+        state: present
+    - name: Install docker
+      ansible.builtin.yum:
+        name: docker
+        state: present
+    - name: start docker
+      service:
+        name: docker
+        state: started
+        enabled: yes
     - name: Install docker-py python module
       pip:
         name: docker-py
@@ -12,9 +22,7 @@
     - name: Start the container
       docker_container:
         name: kartapp
-        image: "kart4444/kartapp:{{DOCKER_TAG}}"
+        image: kart4444/kartapp:{{DOCKER_TAG}}
         state: started
         published_ports:
           - 0.0.0.0:8080:8080
-     - name: Check if container is running
-       shell: docker ps
