@@ -1,5 +1,5 @@
 ---
-- hosts: dev
+- hosts: test
   become: true
   tasks: 
     - name: start docker
